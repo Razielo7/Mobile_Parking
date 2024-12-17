@@ -55,7 +55,7 @@ public class SignupActivity extends AppCompatActivity {
                 Toast.makeText(this, "Sign-Up Successful!", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(SignupActivity.this, LoginActivity.class);
                 startActivity(intent);
-                finish(); // Prevent going back to Sign-Up screen
+                finish();
             } else {
                 Toast.makeText(this, "Sign-Up Failed. Username might already exist.", Toast.LENGTH_SHORT).show();
             }
