@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@android:color/white"
+    android:layout_marginBottom="8dp"
+    android:elevation="4dp">
+
+    <!-- Vehicle Number -->
+    <TextView
+        android:id="@+id/tvVehicleNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Vehicle Number: Placeholder"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/black" />
+
+    <!-- Owner Name -->
+    <TextView
+        android:id="@+id/tvOwnerName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Owner Name: Placeholder"
+        android:textSize="14sp"
+        android:textColor="@android:color/black" />
+
+    <!-- Parking Number -->
+    <TextView
+        android:id="@+id/tvParkingNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Parking Number: Placeholder"
+        android:textSize="14sp"
+        android:textColor="@android:color/black" />
+
+    <!-- Start Date -->
+    <TextView
+        android:id="@+id/tvStartDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Start Date: Placeholder"
+        android:textSize="14sp"
+        android:textColor="@android:color/black" />
+
+    <!-- End Date -->
+    <TextView
+        android:id="@+id/tvEndDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="End Date: Placeholder"
+        android:textSize="14sp"
+        android:textColor="@android:color/black" />
+
+    <!-- Parking Days -->
+    <TextView
+        android:id="@+id/tvParkingDays"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Parking Days: Placeholder"
+        android:textSize="14sp"
+        android:textColor="@android:color/black" />
+
+    <!-- Action Buttons -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="end"
+        android:paddingTop="12dp">
+
+        <!-- Edit Button -->
+        <Button
+            android:id="@+id/btnEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Edit"
+            android:backgroundTint="@color/purple_500"
+            android:textColor="@android:color/white" />
+
+        <!-- Delete Button -->
+        <Button
+            android:id="@+id/btnDelete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Delete"
+            android:layout_marginStart="12dp"
+            android:backgroundTint="@android:color/holo_red_dark"
+            android:textColor="@android:color/white" />
+    </LinearLayout>
+</LinearLayout>
