@@ -4,17 +4,18 @@
     android:layout_height="match_parent"
     android:padding="16dp">
 
-    <!-- Logout Button in Top Right Corner -->
+    <!-- Logout Button at Top Right -->
     <Button
         android:id="@+id/btnLogout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Logout"
-        android:backgroundTint="@color/purple_500"
         android:textColor="@android:color/white"
+        android:backgroundTint="@color/purple_500"
+        android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginEnd="8dp"
-        android:layout_marginTop="8dp" />
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp" />
 
     <!-- RecyclerView for displaying parking records -->
     <androidx.recyclerview.widget.RecyclerView
@@ -22,8 +23,8 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_above="@id/footerLayout"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="8dp" />
+        android:layout_below="@id/btnLogout"
+        android:layout_marginTop="16dp" />
 
     <!-- Footer layout for buttons -->
     <LinearLayout
@@ -33,7 +34,6 @@
         android:layout_alignParentBottom="true"
         android:orientation="horizontal"
         android:gravity="center"
-        android:layout_marginTop="8dp"
         android:weightSum="2">
 
         <!-- Add Record Button -->
@@ -42,21 +42,20 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:layout_marginEnd="8dp"
             android:text="Add Record"
+            android:textColor="@android:color/white"
             android:backgroundTint="@color/purple_500"
-            android:textColor="@android:color/white" />
+            android:layout_marginEnd="8dp" />
 
-        <!-- Delete All Records Button -->
+        <!-- Delete ALL Button -->
         <Button
             android:id="@+id/btnDeleteAllRecords"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
             android:text="Delete ALL"
+            android:textColor="@android:color/white"
             android:backgroundTint="@android:color/holo_red_dark"
-            android:textColor="@android:color/white" />
+            android:layout_marginStart="8dp" />
     </LinearLayout>
 </RelativeLayout>

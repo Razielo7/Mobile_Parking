@@ -33,6 +33,7 @@ public class UpdateParkingActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         parkingId = intent.getIntExtra("parkingId", -1);
+
         String vehicleNumber = intent.getStringExtra("vehicleNumber");
         String ownerName = intent.getStringExtra("ownerName");
         int parkingDays = intent.getIntExtra("parkingDays", 0);

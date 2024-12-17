@@ -8,16 +8,16 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
-    private static final String DATABASE_NAME = "MobileParking.db";
-    private static final int DATABASE_VERSION = 1;
+    public static final String DATABASE_NAME = "MobileParking.db";
+    public static final int DATABASE_VERSION = 1;
 
-    // Users Table
+    // Users_Table
     public static final String TABLE_USERS = "users";
     public static final String COLUMN_USER_ID = "id";
     public static final String COLUMN_USERNAME = "username";
     public static final String COLUMN_PASSWORD = "password";
 
-    // Parking Records Table
+    // Parking_Records_Table
     public static final String TABLE_PARKING = "parking";
     public static final String COLUMN_PARKING_ID = "id";
     public static final String COLUMN_VEHICLE_NUMBER = "vehicle_number";
@@ -122,16 +122,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return db.update(TABLE_PARKING, values, COLUMN_PARKING_ID + " = ?", new String[]{String.valueOf(id)});
     }
 
-
     public boolean isParkingAvailable(String parkingNumber, String startDate, String endDate) {
         SQLiteDatabase db = this.getReadableDatabase();
-        String query = "SELECT * FROM " + TABLE_PARKING + " WHERE " + COLUMN_PARKING_NUMBER + " = ? " +
-                "AND (" +
-                "(? BETWEEN " + COLUMN_START_DATE + " AND " + COLUMN_END_DATE + ") OR " +
-                "(? BETWEEN " + COLUMN_START_DATE + " AND " + COLUMN_END_DATE + ") OR " +
-                "(? <= " + COLUMN_START_DATE + " AND ? >= " + COLUMN_END_DATE + "))";
+        String query = "SELECT * FROM " + TABLE_PARKING +
+                " WHERE " + COLUMN_PARKING_NUMBER + " = ? " +
+                " AND (" +
+                " (? BETWEEN " + COLUMN_START_DATE + " AND " + COLUMN_END_DATE + ") OR " +
+                " (? BETWEEN " + COLUMN_START_DATE + " AND " + COLUMN_END_DATE + ") OR " +
+                " (? <= " + COLUMN_START_DATE + " AND ? >= " + COLUMN_END_DATE + ")" +
+                " )";
+
         Cursor cursor = db.rawQuery(query, new String[]{parkingNumber, startDate, endDate, startDate, endDate});
-        boolean isAvailable = cursor.getCount() == 0;
+        boolean isAvailable = cursor.getCount() == 0; // True if no conflicts found
         cursor.close();
         return isAvailable;
     }
@@ -139,6 +141,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public int deleteParkingRecord(int id) {
         SQLiteDatabase db = this.getWritableDatabase();
         return db.delete(TABLE_PARKING, COLUMN_PARKING_ID + " = ?", new String[]{String.valueOf(id)});
+    }
+
+    public void deleteAllParkingRecords() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_PARKING, null, null);
+        db.close();
     }
 
     private int getUserId(String username) {

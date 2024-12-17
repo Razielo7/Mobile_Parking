@@ -1,5 +1,6 @@
 package com.example.mobile_parking;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -16,29 +17,32 @@ import java.util.ArrayList;
 
 public class HomeActivity extends AppCompatActivity {
 
-    private RecyclerView rvParkingRecords;
-    private DatabaseHelper dbHelper;
-    private ArrayList<ParkingModel> parkingList;
-    private ParkingAdapter parkingAdapter;
-    private String username;
-    private Button btnAddRecord; // Add button
+    public RecyclerView rvParkingRecords;
+    public DatabaseHelper dbHelper;
+    public ArrayList<ParkingModel> parkingList;
+    public ParkingAdapter parkingAdapter;
+    public String username;
+    public Button btnAddRecord;  // Add Record button
+    public Button btnDeleteAllRecords; // Delete All button
+    public Button btnLogout; // Logout button
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        // Initialize Views
         rvParkingRecords = findViewById(R.id.rvParkingRecords);
-        btnAddRecord = findViewById(R.id.btnAddRecord); // Initialize Add Record button
+        btnAddRecord = findViewById(R.id.btnAddRecord);
+        btnDeleteAllRecords = findViewById(R.id.btnDeleteAllRecords);
+        btnLogout = findViewById(R.id.btnLogout);
 
         dbHelper = new DatabaseHelper(this);
         parkingList = new ArrayList<>();
         username = getIntent().getStringExtra("username");
 
-        // Set up RecyclerView with layout manager
+        // Setup RecyclerView
         rvParkingRecords.setLayoutManager(new LinearLayoutManager(this));
-
-        // Initialize the adapter
         parkingAdapter = new ParkingAdapter(this, parkingList, new ParkingAdapter.OnItemActionListener() {
             @Override
             public void onDelete(ParkingModel parking) {
@@ -47,9 +51,9 @@ public class HomeActivity extends AppCompatActivity {
 
             @Override
             public void onEdit(ParkingModel parking) {
-                Log.d("HomeActivity", "Editing Record: " + parking.getId());
+                // Pass data to UpdateParkingActivity
                 Intent intent = new Intent(HomeActivity.this, UpdateParkingActivity.class);
-                intent.putExtra("parkingId", parking.getId()); // Ensure consistency
+                intent.putExtra("parkingId", parking.getId());
                 intent.putExtra("vehicleNumber", parking.getVehicleNumber());
                 intent.putExtra("ownerName", parking.getOwnerName());
                 intent.putExtra("parkingDays", parking.getParkingDays());
@@ -59,22 +63,36 @@ public class HomeActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
         rvParkingRecords.setAdapter(parkingAdapter);
 
+        // Add Record Button Click
         btnAddRecord.setOnClickListener(v -> {
             Intent intent = new Intent(HomeActivity.this, AddParkingActivity.class);
             intent.putExtra("username", username);
             startActivity(intent);
         });
+
+        // Delete All Records Button Click
+        btnDeleteAllRecords.setOnClickListener(v -> {
+            showDeleteAllConfirmationDialog();
+        });
+
+        // Logout Button Click
+        btnLogout.setOnClickListener(v -> {
+            showLogoutConfirmationDialog();
+        });
+
+        // Load Records
+        loadParkingRecords();
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     private void loadParkingRecords() {
         parkingList.clear();
         Cursor cursor = dbHelper.getParkingRecords(username);
 
         if (cursor != null) {
-            Log.d("HomeActivity", "Total Records: " + cursor.getCount()); // Log total records
+            Log.d("HomeActivity", "Total Records: " + cursor.getCount());
             while (cursor.moveToNext()) {
                 int id = cursor.getInt(cursor.getColumnIndexOrThrow(DatabaseHelper.COLUMN_PARKING_ID));
                 String vehicleNumber = cursor.getString(cursor.getColumnIndexOrThrow(DatabaseHelper.COLUMN_VEHICLE_NUMBER));
@@ -94,7 +112,6 @@ public class HomeActivity extends AppCompatActivity {
         parkingAdapter.notifyDataSetChanged();
     }
 
-
     private void showDeleteConfirmationDialog(ParkingModel record) {
         new AlertDialog.Builder(this)
                 .setTitle("Delete Parking Record")
@@ -107,6 +124,34 @@ public class HomeActivity extends AppCompatActivity {
                     } else {
                         Toast.makeText(HomeActivity.this, "Failed to delete record", Toast.LENGTH_SHORT).show();
                     }
+                })
+                .setNegativeButton("No", null)
+                .show();
+    }
+
+    private void showDeleteAllConfirmationDialog() {
+        new AlertDialog.Builder(this)
+                .setTitle("Delete ALL Records")
+                .setMessage("Are you sure you want to delete all parking records?")
+                .setPositiveButton("Yes", (dialog, which) -> {
+                    dbHelper.deleteAllParkingRecords();
+                    Toast.makeText(HomeActivity.this, "All records deleted successfully", Toast.LENGTH_SHORT).show();
+                    loadParkingRecords();
+                })
+                .setNegativeButton("No", null)
+                .show();
+    }
+
+    private void showLogoutConfirmationDialog() {
+        new AlertDialog.Builder(this)
+                .setTitle("Logout")
+                .setMessage("Are you sure you want to log out?")
+                .setPositiveButton("Yes", (dialog, which) -> {
+                    Toast.makeText(HomeActivity.this, "Logged out successfully", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(HomeActivity.this, LoginActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);
+                    finish();
                 })
                 .setNegativeButton("No", null)
                 .show();
