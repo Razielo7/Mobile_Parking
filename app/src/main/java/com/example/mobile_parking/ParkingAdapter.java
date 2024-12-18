@@ -14,9 +14,9 @@ import java.util.ArrayList;
 
 public class ParkingAdapter extends RecyclerView.Adapter<ParkingAdapter.ViewHolder> {
 
-    private Context context;
-    private ArrayList<ParkingModel> parkingList;
-    private OnItemActionListener onItemActionListener;
+    public Context context;
+    public ArrayList<ParkingModel> parkingList;
+    public OnItemActionListener onItemActionListener;
 
     // Interface for handling item actions
     public interface OnItemActionListener {

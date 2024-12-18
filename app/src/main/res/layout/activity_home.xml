@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:padding="16dp">
 
-    <!-- Logout Button at Top Right -->
+    <!-- add Logout Button -->
     <Button
         android:id="@+id/btnLogout"
         android:layout_width="wrap_content"
@@ -17,7 +17,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp" />
 
-    <!-- RecyclerView for displaying parking records -->
+    <!-- view and displaying parking records -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvParkingRecords"
         android:layout_width="match_parent"

@@ -1,23 +1,23 @@
 package com.example.mobile_parking;
 
 public class ParkingModel {
-    private int id;
-    private String vehicleNumber;
-    private String ownerName;
-    private int parkingDays;
-    private String parkingNumber; // New field
-    private String startDate;     // New field
-    private String endDate;       // New field
+    public int id;
+    public String vehicleNumber;
+    public String ownerName;
+    public int parkingDays;
+    public String parkingNumber;
+    public String startDate;
+    public String endDate;
 
-    // Updated constructor with additional fields
-    public ParkingModel(int id, String vehicleNumber, String ownerName, int parkingDays, String parkingNumber, String startDate, String endDate) {
-        this.id = id;
-        this.vehicleNumber = vehicleNumber;
-        this.ownerName = ownerName;
-        this.parkingDays = parkingDays;
-        this.parkingNumber = parkingNumber;
-        this.startDate = startDate;
-        this.endDate = endDate;
+
+    public ParkingModel(int parkingid, String vehicleNu, String ownerN, int parkingD, String parkingNu, String startD, String endD) {
+        id = parkingid;
+        vehicleNumber = vehicleNu;
+        ownerName = ownerN;
+        parkingDays = parkingD;
+        parkingNumber = parkingNu;
+        startDate = startD;
+        endDate = endD;
     }
 
     // Getter and Setter methods

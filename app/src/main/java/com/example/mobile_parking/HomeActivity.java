@@ -22,9 +22,9 @@ public class HomeActivity extends AppCompatActivity {
     public ArrayList<ParkingModel> parkingList;
     public ParkingAdapter parkingAdapter;
     public String username;
-    public Button btnAddRecord;  // Add Record button
-    public Button btnDeleteAllRecords; // Delete All button
-    public Button btnLogout; // Logout button
+    public Button btnAddRecord;
+    public Button btnDeleteAllRecords;
+    public Button btnLogout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,19 +65,19 @@ public class HomeActivity extends AppCompatActivity {
         });
         rvParkingRecords.setAdapter(parkingAdapter);
 
-        // Add Record Button Click
+        // Add Record Button
         btnAddRecord.setOnClickListener(v -> {
             Intent intent = new Intent(HomeActivity.this, AddParkingActivity.class);
             intent.putExtra("username", username);
             startActivity(intent);
         });
 
-        // Delete All Records Button Click
+        // Delete All
         btnDeleteAllRecords.setOnClickListener(v -> {
             showDeleteAllConfirmationDialog();
         });
 
-        // Logout Button Click
+        // Logout
         btnLogout.setOnClickListener(v -> {
             showLogoutConfirmationDialog();
         });

@@ -11,10 +11,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private EditText etUsername, etPassword;
-    private Button btnLogin;
-    private TextView tvSignUp;
-    private DatabaseHelper dbHelper;
+    public EditText etUsername, etPassword;
+    public Button btnLogin;
+    public TextView tvSignUp;
+    public DatabaseHelper dbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

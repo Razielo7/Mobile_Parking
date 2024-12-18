@@ -10,10 +10,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class UpdateParkingActivity extends AppCompatActivity {
 
-    private EditText etVehicleNumber, etOwnerName, etParkingDays, etParkingNumber, etStartDate, etEndDate;
-    private Button btnUpdate, btnDelete;
-    private DatabaseHelper dbHelper;
-    private int parkingId;
+    public EditText etVehicleNumber, etOwnerName, etParkingDays, etParkingNumber, etStartDate, etEndDate;
+    public Button btnUpdate, btnDelete;
+    public DatabaseHelper dbHelper;
+    public int parkingId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

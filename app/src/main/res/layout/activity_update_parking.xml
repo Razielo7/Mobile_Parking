@@ -5,6 +5,15 @@
     android:orientation="vertical"
     android:padding="16dp">
 
+    <!-- Vehicle Number -->
+    <EditText
+        android:id="@+id/etVehicleNumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Vehicle Number"
+        android:layout_marginBottom="8dp" />
+
+    <!-- Parking Number -->
     <EditText
         android:id="@+id/etParkingNumber"
         android:layout_width="match_parent"
@@ -12,6 +21,7 @@
         android:hint="Parking Number"
         android:layout_marginBottom="8dp" />
 
+    <!-- Owner Name -->
     <EditText
         android:id="@+id/etOwnerName"
         android:layout_width="match_parent"
@@ -19,20 +29,39 @@
         android:hint="Owner Name"
         android:layout_marginBottom="8dp" />
 
+    <!-- Parking Days -->
     <EditText
         android:id="@+id/etParkingDays"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Parking Days"
         android:inputType="number"
+        android:layout_marginBottom="8dp" />
+
+    <!-- Start Date -->
+    <EditText
+        android:id="@+id/etStartDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Start Date (YYYY-MM-DD)"
+        android:layout_marginBottom="8dp" />
+
+    <!-- End Date -->
+    <EditText
+        android:id="@+id/etEndDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="End Date (YYYY-MM-DD)"
         android:layout_marginBottom="16dp" />
 
+    <!-- Update Button -->
     <Button
         android:id="@+id/btnUpdate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Update" />
 
+    <!-- Delete Button -->
     <Button
         android:id="@+id/btnDelete"
         android:layout_width="match_parent"
