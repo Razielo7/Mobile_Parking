@@ -112,7 +112,7 @@ public class HomeActivity extends AppCompatActivity {
         parkingAdapter.notifyDataSetChanged();
     }
 
-    private void showDeleteConfirmationDialog(ParkingModel record) {
+    public void showDeleteConfirmationDialog(ParkingModel record) {
         new AlertDialog.Builder(this)
                 .setTitle("Delete Parking Record")
                 .setMessage("Are you sure you want to delete this parking record?")
@@ -129,7 +129,7 @@ public class HomeActivity extends AppCompatActivity {
                 .show();
     }
 
-    private void showDeleteAllConfirmationDialog() {
+    public void showDeleteAllConfirmationDialog() {
         new AlertDialog.Builder(this)
                 .setTitle("Delete ALL Records")
                 .setMessage("Are you sure you want to delete all parking records?")
@@ -142,7 +142,7 @@ public class HomeActivity extends AppCompatActivity {
                 .show();
     }
 
-    private void showLogoutConfirmationDialog() {
+    public void showLogoutConfirmationDialog() {
         new AlertDialog.Builder(this)
                 .setTitle("Logout")
                 .setMessage("Are you sure you want to log out?")
