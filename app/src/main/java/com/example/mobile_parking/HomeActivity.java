@@ -87,7 +87,7 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    private void loadParkingRecords() {
+    public void loadParkingRecords() {
         parkingList.clear();
         Cursor cursor = dbHelper.getParkingRecords(username);
 
