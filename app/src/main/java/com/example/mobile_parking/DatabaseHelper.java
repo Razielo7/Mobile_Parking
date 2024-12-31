@@ -149,7 +149,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
     }
 
-    private int getUserId(String username) {
+    public int getUserId(String username) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.query(TABLE_USERS, null, COLUMN_USERNAME + " = ?", new String[]{username}, null, null, null);
         if (cursor != null && cursor.moveToFirst()) {
