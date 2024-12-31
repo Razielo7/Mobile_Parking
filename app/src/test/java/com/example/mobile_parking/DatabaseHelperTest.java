@@ -18,8 +18,8 @@ import static org.junit.Assert.*;
 @Config(sdk = {33}) // there is issue with 34 so I Force Robolectric to use API level 33
 public class DatabaseHelperTest {
 
-    private DatabaseHelper dbHelper;
-    private Context context;
+    public DatabaseHelper dbHelper;
+    public Context context;
 
     @Before
     public void setUp() {
